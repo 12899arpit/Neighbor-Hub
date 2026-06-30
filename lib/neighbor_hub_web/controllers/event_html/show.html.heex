@@ -1,0 +1,21 @@
+<div class="mx-auto max-w-2xl py-8">
+  <a href={~p"/events"} class="text-sm text-blue-500 hover:underline">← Back to events</a>
+
+  <div class="mt-6">
+    <h1 class="text-3xl font-bold"><%= @event.title %></h1>
+    <p class="text-sm text-gray-500 mt-2">
+      📍 <%= @event.location %> · 🗓 <%= @event.date %>
+    </p>
+    <p class="text-sm mt-1">Posted by <%= @event.user.name %></p>
+
+    <%= if @event.description do %>
+      <p class="mt-6"><%= @event.description %></p>
+    <% end %>
+
+    <%= if @current_user && @current_user.id == @event.user_id do %>
+        <.form for={%{}} action={~p"/events/#{@event.id}"} method="delete">
+            <.button type="submit" class="btn btn-error btn-sm">Delete Event</.button>
+        </.form>
+    <% end %>
+  </div>
+</div>

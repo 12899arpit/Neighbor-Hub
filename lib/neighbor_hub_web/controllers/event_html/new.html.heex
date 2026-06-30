@@ -1,0 +1,28 @@
+<div class="max-w-xl mx-auto">
+  <p class="text-xs uppercase tracking-widest font-semibold" style="font-family: var(--font-mono); color: var(--color-sage);">
+    Pin something up
+  </p>
+  <h1 class="mt-2 text-4xl" style="font-family: var(--font-display); font-weight: 900; color: var(--color-ink);">
+    Post an event
+  </h1>
+
+  <.form :let={f} for={@changeset} action={~p"/events"} class="mt-8 space-y-5">
+    <div>
+      <.input field={f[:title]} label="Event title" />
+    </div>
+    <div>
+      <.input field={f[:description]} label="Description" type="textarea" />
+    </div>
+    <div>
+      <.input field={f[:location]} label="Location" />
+    </div>
+    <div>
+      <.input field={f[:date]} label="Date & time" type="datetime-local" />
+    </div>
+    <button type="submit"
+            class="w-full rounded-md py-3 text-paper font-semibold hover:opacity-90 transition-opacity"
+            style="background: var(--color-terracotta);">
+      Post event
+    </button>
+  </.form>
+</div>

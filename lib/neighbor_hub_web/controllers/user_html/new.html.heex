@@ -1,0 +1,30 @@
+<div class="max-w-sm mx-auto mt-12">
+  <p class="text-xs uppercase tracking-widest font-semibold" style="font-family: var(--font-mono); color: var(--color-sage);">
+    Join the block
+  </p>
+  <h1 class="mt-2 text-3xl" style="font-family: var(--font-display); font-weight: 900; color: var(--color-ink);">
+    Create your account
+  </h1>
+
+  <.form :let={f} for={@changeset} action={~p"/signup"} class="mt-8 space-y-5">
+    <div>
+      <.input field={f[:name]} label="Name" />
+    </div>
+    <div>
+      <.input field={f[:email]} label="Email" type="email" />
+    </div>
+    <div>
+      <.input field={f[:password]} label="Password" type="password" />
+    </div>
+    <button type="submit"
+            class="w-full rounded-md py-3 text-paper font-semibold hover:opacity-90 transition-opacity"
+            style="background: var(--color-terracotta);">
+      Create account
+    </button>
+  </.form>
+
+  <p class="mt-6 text-sm text-center" style="color: var(--color-ink); opacity: 0.6;">
+    Already have an account?
+    <a href={~p"/login"} class="underline" style="color: var(--color-terracotta);">Log in</a>
+  </p>
+</div>

@@ -1,0 +1,51 @@
+<Layouts.flash_group flash={@flash} />
+<div class="relative">
+  <!-- Torn paper edge accent -->
+  <div class="absolute -left-6 top-0 h-full w-1 bg-terracotta/20 hidden sm:block"></div>
+
+  <p class="text-sm uppercase tracking-widest text-sage font-medium" style="font-family: var(--font-mono);">
+    Your block, online
+  </p>
+
+  <h1 class="mt-3 text-5xl sm:text-6xl leading-[1.05]" style="font-family: var(--font-display); font-weight: 900; color: var(--color-ink);">
+    What's happening<br/>
+    <span class="text-terracotta">down the street.</span>
+  </h1>
+
+  <p class="mt-6 max-w-md text-lg text-ink/70">
+    Stoop sales, block parties, lost-cat flyers turned community meetups —
+    NeighborHub is the bulletin board for the people who live near you.
+  </p>
+
+  <div class="mt-8 flex items-center gap-4">
+    <%= if @current_user do %>
+      <a href="/events"
+         class="rounded-md bg-terracotta px-6 py-3 text-paper font-semibold hover:bg-terracotta/90 transition-colors">
+        Browse events →
+      </a>
+    <% else %>
+      <a href={~p"/signup"}
+         class="rounded-md bg-terracotta px-6 py-3 text-paper font-semibold hover:bg-terracotta/90 transition-colors">
+        Get started
+      </a>
+      <a href="/events" class="text-ink/70 hover:text-ink underline underline-offset-4">
+        See what's posted
+      </a>
+    <% end %>
+  </div>
+
+  <div class="mt-16 grid grid-cols-3 gap-6 max-w-md border-t-2 border-dashed border-ink/15 pt-8">
+    <div>
+      <p class="text-3xl" style="font-family: var(--font-display); font-weight: 700; color: var(--color-sage);">01</p>
+      <p class="mt-1 text-sm text-ink/60">Post an event in under a minute</p>
+    </div>
+    <div>
+      <p class="text-3xl" style="font-family: var(--font-display); font-weight: 700; color: var(--color-sage);">02</p>
+      <p class="mt-1 text-sm text-ink/60">Neighbors RSVP in real time</p>
+    </div>
+    <div>
+      <p class="text-3xl" style="font-family: var(--font-display); font-weight: 700; color: var(--color-sage);">03</p>
+      <p class="mt-1 text-sm text-ink/60">Show up, meet your block</p>
+    </div>
+  </div>
+</div>

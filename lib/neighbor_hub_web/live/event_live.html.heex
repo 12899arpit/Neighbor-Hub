@@ -1,0 +1,66 @@
+<div class="max-w-4xl mx-auto">
+  <a href={~p"/events"} class="inline-block text-sm text-ink/50 hover:text-terracotta transition-colors" style="font-family: var(--font-mono);">
+    ← back to the board
+  </a>
+
+  <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-10 items-start">
+    <div class="sm:col-span-2">
+      <p class="text-xs uppercase tracking-widest font-semibold" style="font-family: var(--font-mono); color: var(--color-sage);">
+        <%= Calendar.strftime(@event.date, "%A, %B %d · %I:%M %p") %>
+      </p>
+
+      <h1 class="mt-3 text-4xl sm:text-5xl leading-[1.1]"
+          style="font-family: var(--font-display); font-weight: 900; color: var(--color-ink);">
+        <%= @event.title %>
+      </h1>
+
+      <p class="mt-4 text-base" style="font-family: var(--font-mono); color: var(--color-ink); opacity: 0.7;">
+        📍 <%= @event.location %>
+      </p>
+
+      <p class="mt-1 text-sm" style="color: var(--color-ink); opacity: 0.45;">
+        Posted by <%= @event.user.name %>
+      </p>
+
+      <%= if @event.description do %>
+        <div class="mt-8 pt-6 border-t-2 border-dashed" style="border-color: rgb(31 42 31 / 0.15);">
+          <p class="leading-relaxed whitespace-pre-line" style="color: var(--color-ink); opacity: 0.85;">
+            <%= @event.description %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="sm:col-span-1">
+      <div class="rounded-sm border p-6 sticky top-6"
+           style="background: var(--color-kraft); border-color: rgb(31 42 31 / 0.1);">
+        <p class="text-4xl" style="font-family: var(--font-display); font-weight: 900; color: var(--color-forest);">
+          <%= @rsvp_count %>
+        </p>
+        <p class="text-sm mb-5" style="font-family: var(--font-mono); color: var(--color-ink); opacity: 0.6;">
+          <%= if @rsvp_count == 1, do: "neighbor going", else: "neighbors going" %>
+        </p>
+
+        <%= if @user_id do %>
+          <button
+            phx-click="toggle_rsvp"
+            class={[
+              "w-full rounded-md py-3 font-semibold transition-colors",
+              @has_rsvp && "bg-ink/10 hover:bg-ink/20",
+              !@has_rsvp && "text-paper hover:opacity-90"
+            ]}
+            style={!@has_rsvp && "background: var(--color-terracotta);"}
+          >
+            <%= if @has_rsvp, do: "Cancel RSVP", else: "I'm going" %>
+          </button>
+        <% else %>
+          <a href={~p"/login"}
+             class="block w-full text-center rounded-md py-3 text-paper font-semibold hover:opacity-90 transition-opacity"
+             style="background: var(--color-terracotta);">
+            Log in to RSVP
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
