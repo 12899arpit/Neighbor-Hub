@@ -6,9 +6,9 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :neighbor_hub, NeighborHub.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: System.get_env("DB_USERNAME"),
+  password: System.get_env("DB_PASSWORD"),
+  hostname: System.get_env("DB_HOSTNAME"),
   database: "neighbor_hub_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
@@ -17,7 +17,8 @@ config :neighbor_hub, NeighborHub.Repo,
 # you can enable the server option below.
 config :neighbor_hub, NeighborHubWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "6WMpzInehSINgM8VuSXZRl4RTb3H15wr5ZDIeJCy8jTDHx12gLn7DvFifVKeX3KU",
+  secret_key_base: System.get_env("SECRET_KEY_BASE") ||
+      "test_secret_key_base_fallback_must_be_at_least_64_bytes_long_to_work_properly",
   server: false
 
 # In test we don't send emails
