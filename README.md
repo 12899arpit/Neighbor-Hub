@@ -2,8 +2,6 @@
 
 A real-time community events board built with Phoenix LiveView. Neighbors post local events — stoop sales, block parties, park meetups — and RSVP instantly, no page reloads.
 
-**Live demo:** _add your Fly.io URL here after deploying_
-
 ## What it does
 
 - Sign up, log in, and post events with title, location, date, and description
